@@ -1,7 +1,5 @@
 package com.devsuperior.bds02.services;
 
-import java.util.List;
-
 import javax.persistence.EntityNotFoundException;
 
 import com.devsuperior.bds02.dto.EventDTO;
