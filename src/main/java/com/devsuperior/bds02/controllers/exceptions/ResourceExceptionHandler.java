@@ -4,6 +4,7 @@ import java.time.Instant;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.devsuperior.bds02.services.exception.DatabaseException;
 import com.devsuperior.bds02.services.exception.ResourceNotFoundException;
 
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,20 @@ public class ResourceExceptionHandler {
         err.setTimestamp(Instant.now());
         err.setStatus(status.value());
         err.setError("Resource not found");
+        err.setMessage(e.getMessage());
+        err.setPath(request.getRequestURI());
+
+        return ResponseEntity.status(status).body(err);
+
+    }
+
+    @ExceptionHandler(DatabaseException.class)
+    public ResponseEntity<StandardError> entityNotFound(DatabaseException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardError err = new StandardError();
+        err.setTimestamp(Instant.now());
+        err.setStatus(status.value());
+        err.setError("Database Exception");
         err.setMessage(e.getMessage());
         err.setPath(request.getRequestURI());
 
