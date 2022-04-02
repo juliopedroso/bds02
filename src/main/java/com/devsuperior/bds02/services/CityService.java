@@ -13,6 +13,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CityService {
@@ -20,6 +21,7 @@ public class CityService {
     @Autowired
     private CityRepository repository;
 
+    @Transactional(readOnly = true)
     public List<CityDTO> findAllPaged() {
 
         List<City> list = repository.findAll(Sort.by("name"));
@@ -27,6 +29,7 @@ public class CityService {
         return list.stream().map(CityDTO::new).toList();
     }
 
+    @Transactional
     public CityDTO insert(CityDTO dto) {
 
         City city = new City();
@@ -43,7 +46,7 @@ public class CityService {
             repository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException("Id not Found " + id);
-        }catch( DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             throw new DatabaseException("Integraty Violation");
         }
 

@@ -5,6 +5,7 @@ import javax.persistence.EntityNotFoundException;
 import com.devsuperior.bds02.dto.EventDTO;
 import com.devsuperior.bds02.entities.Event;
 import com.devsuperior.bds02.repositories.CityRepository;
+import com.devsuperior.bds02.repositories.EventRepository;
 import com.devsuperior.bds02.services.exception.ResourceNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;

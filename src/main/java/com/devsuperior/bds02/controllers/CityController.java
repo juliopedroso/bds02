@@ -42,8 +42,8 @@ public class CityController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
-        
+    public ResponseEntity<CityDTO> delete(@PathVariable Long id){
+
         service.delete(id);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

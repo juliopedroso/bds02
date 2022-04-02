@@ -1,4 +1,4 @@
-package com.devsuperior.bds02.services;
+package com.devsuperior.bds02.repositories;
 
 import com.devsuperior.bds02.entities.Event;
 
